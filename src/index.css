@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f1f5f9;
+  --border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-soft: #dbeafe;
+  --success: #22c55e;
+  --success-soft: #dcfce7;
+  --warning: #f59e0b;
+  --warning-soft: #fef3c7;
+  --danger: #ef4444;
+  --danger-soft: #fee2e2;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-alt: #334155;
+  --border: #475569;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --accent: #60a5fa;
+  --accent-soft: #1e3a5f;
+  --success: #4ade80;
+  --success-soft: #14532d;
+  --warning: #fbbf24;
+  --warning-soft: #713f12;
+  --danger: #f87171;
+  --danger-soft: #7f1d1d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth transitions for theme switch */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Scrollbar dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
