@@ -121,13 +121,6 @@ export default function Dashboard({ slug }) {
         <Roadmap kpis={kpis} atcData={atcData} />
       </Section>
 
-      {/* Footer */}
-      <div className="text-center py-6">
-        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-          Panel de Calidad &mdash; Datos generados por 6 agentes QA automatizados
-          &mdash; {new Date().toLocaleDateString('es-PE')}
-        </p>
-      </div>
     </div>
   );
 }

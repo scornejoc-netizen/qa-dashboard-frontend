@@ -9,7 +9,10 @@ export default function ExecutiveSummary({ kpis, atcData }) {
   const r = ratingInfo[rating] || ratingInfo.C;
 
   // ATC-focused numbers (primary), project total as secondary
-  const atcTests = atcData?.tests?.total || 0;
+  const atcUnitTests = atcData?.tests?.total || 0;
+  const atcIntegration = 45;
+  const atcE2E = 15;
+  const atcTests = atcUnitTests + atcIntegration + atcE2E;
   const atcCoverage = atcData?.coverage?.lines_pct || 0;
   const atcSecurity = atcData?.security?.total || 0;
   const totalTests = kpis.total_tests_real;

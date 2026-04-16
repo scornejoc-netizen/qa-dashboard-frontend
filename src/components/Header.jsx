@@ -19,7 +19,7 @@ export default function Header({ project, pipeline, updatedAt, onRefresh, refres
             Panel de Calidad
           </h1>
           <p className="text-base mt-1" style={{ color: 'var(--text-secondary)' }}>
-            {project?.name || 'Proyecto'}
+            Analisis de codigo
             <span className="mx-2" style={{ color: 'var(--text-muted)' }}>|</span>
             <span style={{ color: 'var(--text-muted)' }}>{project?.framework}</span>
           </p>
