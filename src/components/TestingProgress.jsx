@@ -4,25 +4,39 @@ import {
 import ProgressBar from './ProgressBar';
 
 export default function TestingProgress({ kpis, coverage, coverageGlobal, testResults, atcData }) {
-  // === DATOS ENFOCADOS EN ATC ===
-  const atcTests = atcData?.tests?.total || 789;
-  const atcCoverage = atcData?.coverage?.lines_pct || 28.82;
+  // === DATOS ENFOCADOS EN ATC (todos desde el API) ===
+  const atcTests = atcData?.tests?.total || 0;
+  const atcCoverage = atcData?.coverage?.lines_pct || 0;
 
-  // Tipos de prueba ATC (unitarias reales + planificadas)
+  // Tipos de prueba ATC
   const testCategories = [
     { name: 'Unitarias', value: atcTests, color: '#3b82f6', status: 'active' },
     { name: 'Integracion', value: 45, color: '#8b5cf6', status: 'active' },
     { name: 'Extremo a extremo (E2E)', value: 15, color: '#06b6d4', status: 'active' },
   ];
 
-  // Desglose de pruebas unitarias ATC por tipo de artefacto (conteo real de specs)
-  const artifactBreakdown = [
-    { name: 'Logica de negocio', count: 82, color: '#3b82f6', desc: 'Casos de uso (UseCases)' },
-    { name: 'Transformacion de datos', count: 44, color: '#06b6d4', desc: 'Mappers (DTO → Entidad)' },
-    { name: 'Gestion de estado', count: 32, color: '#f59e0b', desc: 'States (signals Angular 20)' },
-    { name: 'Orquestadores', count: 27, color: '#22c55e', desc: 'Facades (coordinacion)' },
-    { name: 'Servicios', count: 1, color: '#ec4899', desc: 'Servicios de presentacion' },
-  ];
+  // Desglose por capa desde el API (layers de atcData)
+  const layerColorMap = {
+    useCases: '#3b82f6',
+    mappers: '#06b6d4',
+    states: '#f59e0b',
+    facades: '#22c55e',
+    adapters: '#ec4899',
+    entities: '#a855f7',
+    components: '#14b8a6',
+    pages: '#f97316',
+    services_pres: '#6366f1',
+  };
+
+  const artifactBreakdown = (atcData?.layers || [])
+    .filter((l) => l.tested > 0)
+    .map((l) => ({
+      name: l.label,
+      count: l.tested,
+      color: layerColorMap[l.key] || '#64748b',
+      desc: l.description,
+    }));
+
   const totalAtcSpecs = artifactBreakdown.reduce((s, a) => s + a.count, 0);
 
   // Feature coverage (solo modulos con datos)
