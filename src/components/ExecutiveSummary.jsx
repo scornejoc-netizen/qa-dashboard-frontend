@@ -15,7 +15,8 @@ export default function ExecutiveSummary({ kpis, atcData }) {
   const atcTests = atcUnitTests + atcIntegration + atcE2E;
   const atcCoverage = atcData?.coverage?.lines_pct || 0;
   const atcSecurity = atcData?.security?.total || 0;
-  const totalTests = kpis.total_tests_real;
+  // Total proyecto incluye unitarios reales + integracion + E2E (mismos hardcodeados que ATC)
+  const totalTests = kpis.total_tests_real + atcIntegration + atcE2E;
 
   return (
     <div className="mb-6">
@@ -32,7 +33,7 @@ export default function ExecutiveSummary({ kpis, atcData }) {
         <KpiHero
           value={`${atcCoverage}%`}
           label="Codigo ATC verificado"
-          sub={`Total del proyecto: ${kpis.coverage_lines}%`}
+          sub={`Promedio del proyecto: ${kpis.coverage_lines}%`}
           status={atcCoverage >= 50 ? 'good' : atcCoverage >= 20 ? 'warn' : 'bad'}
         />
 
