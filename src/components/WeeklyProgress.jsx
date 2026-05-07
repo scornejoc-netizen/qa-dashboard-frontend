@@ -31,11 +31,11 @@ export default function WeeklyProgress() {
         Avance esta semana
       </h3>
       <p className="text-sm mb-5" style={{ color: 'var(--text-secondary)' }}>
-        Foco en módulos secundarios con mayor gap de cobertura. {totalSpecs} specs nuevos sumados, +171 pruebas al proyecto.
+        Foco en módulos secundarios con mayor gap de cobertura. {totalSpecs} specs nuevos sumados, +95 pruebas al proyecto (medidas por jest --coverage).
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-        <DeltaCard label="Tests sumados al proyecto" value="+171" sub="2,584 → 2,755" />
+        <DeltaCard label="Tests sumados al proyecto" value="+95" sub="2,584 → 2,679 (jest --coverage)" />
         <DeltaCard label="Specs nuevos esta semana" value={totalSpecs} sub="3 módulos trabajados" />
         <DeltaCard label="Cobertura global (lines)" value="+0.43pp" sub="42.66% → 43.09%" />
       </div>
