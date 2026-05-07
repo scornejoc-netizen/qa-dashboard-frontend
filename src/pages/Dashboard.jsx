@@ -2,6 +2,7 @@ import { useDashboard, useFocusATC } from '../hooks/useDashboard';
 import Header from '../components/Header';
 import ExecutiveSummary from '../components/ExecutiveSummary';
 import AtencionClienteFocus from '../components/AtencionClienteFocus';
+import WeeklyProgress from '../components/WeeklyProgress';
 import TestingProgress from '../components/TestingProgress';
 import CodeHealth from '../components/CodeHealth';
 import SecurityOverview from '../components/SecurityOverview';
@@ -70,6 +71,9 @@ export default function Dashboard({ slug }) {
 
       {/* SECCION 1: Estado del Proyecto (ATC como protagonista) */}
       <ExecutiveSummary kpis={kpis} atcData={atcData} />
+
+      {/* AVANCE SEMANAL: foco del jueves */}
+      <WeeklyProgress />
 
       {/* Modulo critico ATC */}
       {atcData && (
