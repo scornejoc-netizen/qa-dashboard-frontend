@@ -43,7 +43,7 @@ export default function AtencionClienteFocus({ data }) {
           max={inventory.total_files}
           color="var(--accent)"
           height={10}
-          label="Avance de cobertura"
+          label={`Archivos con al menos un spec (${inventory.tested_files}/${inventory.total_files})`}
         />
       </div>
     </div>
